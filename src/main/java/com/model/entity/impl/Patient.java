@@ -1,11 +1,17 @@
-package persistence.daoEntity;
+package com.model.entity.impl;
 
-public class Patient {
+import com.model.entity.AbstractEntity;
+
+import java.util.List;
+
+public class Patient extends AbstractEntity {
 
     private String firstName;
     private String secondName;
     private String patronymic;
     private String phone;
+
+    private List<Integer> prescriptionList;
 
     public Patient(){}
 
@@ -47,5 +53,13 @@ public class Patient {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public List<Integer> getPrescriptionList() {
+        return prescriptionList;
+    }
+
+    public void setPrescriptionList(List<Integer> prescriptionList) {
+        this.prescriptionList = prescriptionList;
     }
 }
