@@ -55,9 +55,6 @@ public abstract class AbstractService<R extends CommonRepository<EntityObject>, 
     public EntityObject update(int id, E entity){
         EntityObject entityObject = factory.getDaoEntity(entity);
         entityObject.setId(id);
-        entityObject.setValueEntities(entityObject.getValueDBList());
-        entityObject.setReferenceEntities(repo.findById(id).get().getReferenceEntities());
-        entityObject.setBackReferenceEntities(repo.findById(id).get().getBackReferenceEntities());
         return repo.save(entityObject);
     }
 
