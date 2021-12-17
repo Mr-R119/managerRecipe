@@ -12,12 +12,4 @@ public class PatientService extends AbstractService<CommonRepository<EntityObjec
     public PatientService(CommonRepository<EntityObject> repo, PatientEntity factory) {
         super(repo, factory);
     }
-
-//    @Override
-//    public EntityObject update(int id, Patient patient){
-//        EntityObject entityObject = repo.findById()
-//        EntityObject entity = factory.getDaoEntity(patient);
-//        entityObject.setId(id);
-//        return repo.save(entityObject);
-//    }
 }

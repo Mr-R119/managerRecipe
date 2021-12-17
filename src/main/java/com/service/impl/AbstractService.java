@@ -57,5 +57,4 @@ public abstract class AbstractService<R extends CommonRepository<EntityObject>, 
         entityObject.setId(id);
         return repo.save(entityObject);
     }
-
 }

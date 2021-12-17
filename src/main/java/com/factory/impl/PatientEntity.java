@@ -1,6 +1,7 @@
 package com.factory.impl;
 
 import com.factory.EntityFactory;
+import com.model.daoEntity.BackReferenceEntity;
 import com.model.daoEntity.EntityObject;
 import com.model.daoEntity.ReferenceEntity;
 import com.model.daoEntity.ValueEntity;
@@ -45,6 +46,9 @@ public class PatientEntity implements EntityFactory {
             Collections.addAll(valueEntities,
                     new ValueEntity(entityObject, Attribute.PHONE.id,((Patient) abstractEntity).getPhone()));
             entityObject.setValueEntities(valueEntities);
+
+            List<BackReferenceEntity> backReferenceEntities = new ArrayList<>();
+            entityObject.setBackReferenceEntities(backReferenceEntities);
 
             if(((Patient) abstractEntity).getPrescriptionList() != null &&!((Patient) abstractEntity).getPrescriptionList().isEmpty()){
                 List<ReferenceEntity> referenceEntities = new ArrayList<>();

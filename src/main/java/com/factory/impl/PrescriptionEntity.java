@@ -3,6 +3,7 @@ package com.factory.impl;
 import com.factory.EntityFactory;
 import com.model.daoEntity.BackReferenceEntity;
 import com.model.daoEntity.EntityObject;
+import com.model.daoEntity.ReferenceEntity;
 import com.model.daoEntity.ValueEntity;
 import com.model.entity.AbstractEntity;
 import com.model.entity.impl.Prescription;
@@ -47,6 +48,9 @@ public class PrescriptionEntity implements EntityFactory {
             Collections.addAll(valueEntities,
                     new ValueEntity(entityObject, Attribute.PRIORITY.id, ((Prescription) abstractEntity).getPriority()));
             entityObject.setValueEntities(valueEntities);
+
+            List<ReferenceEntity> referenceEntities = new ArrayList<>();
+            entityObject.setReferenceEntities(referenceEntities);
 
             List<BackReferenceEntity> backReferenceEntities = new ArrayList<>();
             Collections.addAll(backReferenceEntities,

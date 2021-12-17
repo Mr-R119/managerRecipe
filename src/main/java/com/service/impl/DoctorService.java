@@ -13,5 +13,4 @@ public class DoctorService extends AbstractService<CommonRepository<EntityObject
     public DoctorService(CommonRepository<EntityObject> repo, DoctorEntity factory) {
         super(repo, factory);
     }
-
 }
