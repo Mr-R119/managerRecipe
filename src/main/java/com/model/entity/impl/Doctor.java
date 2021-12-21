@@ -14,6 +14,8 @@ public class Doctor extends AbstractEntity {
 
     private List<Integer> patientList;
 
+    private List<Integer> prescriptionList;
+
     public Doctor(){
     }
 
@@ -62,5 +64,13 @@ public class Doctor extends AbstractEntity {
 
     public void setPatientList(List<Integer> patientList) {
         this.patientList = patientList;
+    }
+
+    public List<Integer> getPrescriptionList() {
+        return prescriptionList;
+    }
+
+    public void setPrescriptionList(List<Integer> prescriptionList) {
+        this.prescriptionList = prescriptionList;
     }
 }

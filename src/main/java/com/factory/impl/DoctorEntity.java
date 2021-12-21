@@ -24,6 +24,7 @@ public class DoctorEntity implements EntityFactory {
         doctor.setPatronymic(commonEntityDao.getPatronymic());
         doctor.setSpecialization(commonEntityDao.getSpecialization());
         doctor.setPatientList(commonEntityDao.getDoctorPatients());
+        doctor.setPrescriptionList(commonEntityDao.getDoctorPrescriptions());
         return doctor;
     }
 
@@ -45,15 +46,21 @@ public class DoctorEntity implements EntityFactory {
                 entityObject.setValueEntities(valueEntities);
 
                 List<BackReferenceEntity> backReferenceEntities = new ArrayList<>();
-                entityObject.setBackReferenceEntities(backReferenceEntities);
+                List<ReferenceEntity> referenceEntities = new ArrayList<>();
 
                 if (((Doctor) abstractEntity).getPatientList() != null && !((Doctor) abstractEntity).getPatientList().isEmpty()) {
-                    List<ReferenceEntity> referenceEntities = new ArrayList<>();
                     for (Integer patient : ((Doctor) abstractEntity).getPatientList()) {
                         Collections.addAll(referenceEntities,
                                 new ReferenceEntity(entityObject, Attribute.DOCTOR_PATIENT.id, patient));
                         entityObject.setReferenceEntities(referenceEntities);
                     }
+                    for(Integer prescription : ((Doctor)abstractEntity).getPrescriptionList()){
+                        Collections.addAll(referenceEntities,
+                                new ReferenceEntity(entityObject,Attribute.DOCTOR_PRESCRIPTION.id, prescription));
+                    }
+                } else {
+                    entityObject.setReferenceEntities(referenceEntities);
+                    entityObject.setBackReferenceEntities(backReferenceEntities);
                 }
                 return entityObject;
 

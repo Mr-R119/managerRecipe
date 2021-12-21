@@ -147,10 +147,30 @@ public class EntityObject {
         return objects;
     }
 
+    public List<Integer> getPatientDoctors(){
+        List<Integer> objects = new ArrayList<>();
+        for(BackReferenceEntity backReferenceEntity : getBackReferenceEntities()){
+            if(this.id == backReferenceEntity.getReference_id().getId() && backReferenceEntity.getAttribute_id() == DOCTOR_PATIENT.id){
+                objects.add(backReferenceEntity.getObject_id());
+            }
+        }
+        return objects;
+    }
+
     public List<Integer> getPatientPrescriptions(){
         List<Integer> objects = new ArrayList<>();
         for(ReferenceEntity referenceEntity : getReferenceEntities()) {
             if (this.id == referenceEntity.getObject_id().getId() && referenceEntity.getAttribute_id() == PATIENT_PRESCRIPTION.id) {
+                objects.add(referenceEntity.getReference_id());
+            }
+        }
+        return objects;
+    }
+
+    public List<Integer> getDoctorPrescriptions(){
+        List<Integer> objects = new ArrayList<>();
+        for(ReferenceEntity referenceEntity : getReferenceEntities()) {
+            if (this.id == referenceEntity.getObject_id().getId() && referenceEntity.getAttribute_id() == DOCTOR_PRESCRIPTION.id) {
                 objects.add(referenceEntity.getReference_id());
             }
         }

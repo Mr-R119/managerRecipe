@@ -26,6 +26,7 @@ public class PatientEntity implements EntityFactory {
         patient.setPatronymic(commonEntityDao.getPatronymic());
         patient.setPhone(commonEntityDao.getPhone());
         patient.setPrescriptionList(commonEntityDao.getPatientPrescriptions());
+        patient.setDoctorList(commonEntityDao.getPatientDoctors());
 
         return patient;
     }
@@ -47,16 +48,23 @@ public class PatientEntity implements EntityFactory {
                     new ValueEntity(entityObject, Attribute.PHONE.id,((Patient) abstractEntity).getPhone()));
             entityObject.setValueEntities(valueEntities);
 
+            List<ReferenceEntity> referenceEntities = new ArrayList<>();
             List<BackReferenceEntity> backReferenceEntities = new ArrayList<>();
-            entityObject.setBackReferenceEntities(backReferenceEntities);
 
             if(((Patient) abstractEntity).getPrescriptionList() != null &&!((Patient) abstractEntity).getPrescriptionList().isEmpty()){
-                List<ReferenceEntity> referenceEntities = new ArrayList<>();
                 for(Integer prescription : ((Patient) abstractEntity).getPrescriptionList()){
                     Collections.addAll(referenceEntities,
                             new ReferenceEntity(entityObject, Attribute.PATIENT_PRESCRIPTION.id, prescription));
                     entityObject.setReferenceEntities(referenceEntities);
                 }
+                for(Integer doctor: ((Patient)abstractEntity).getDoctorList()){
+                    Collections.addAll(backReferenceEntities,
+                            new BackReferenceEntity(doctor,Attribute.DOCTOR_PATIENT.id,entityObject));
+                }
+                entityObject.setBackReferenceEntities(backReferenceEntities);
+            } else {
+                entityObject.setReferenceEntities(referenceEntities);
+                entityObject.setBackReferenceEntities(backReferenceEntities);
             }
             return entityObject;
         }
