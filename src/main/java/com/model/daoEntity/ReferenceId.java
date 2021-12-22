@@ -5,8 +5,6 @@ import java.util.Objects;
 
 public class ReferenceId implements Serializable {
 
-//    private static final long serialVersionUID = 1L;
-
     private int object_id;
 
     private int attribute_id;

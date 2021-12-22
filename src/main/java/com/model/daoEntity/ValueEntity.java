@@ -1,7 +1,5 @@
 package com.model.daoEntity;
 
-import com.model.enums.Attribute;
-
 import javax.persistence.*;
 import java.util.Date;
 

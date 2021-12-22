@@ -1,6 +1,5 @@
 package com.model.daoEntity;
 
-import com.model.enums.Attribute;
 import com.sun.istack.NotNull;
 
 import javax.persistence.*;
@@ -138,42 +137,42 @@ public class EntityObject {
     }
 
     public List<Integer> getDoctorPatients(){
-        List<Integer> objects = new ArrayList<>();
+        List<Integer> patientList = new ArrayList<>();
         for(ReferenceEntity referenceEntity : getReferenceEntities()){
             if(this.id == referenceEntity.getObject_id().getId() && referenceEntity.getAttribute_id() == DOCTOR_PATIENT.id){
-                objects.add(referenceEntity.getReference_id());
+                patientList.add(referenceEntity.getReference_id());
             }
         }
-        return objects;
+        return patientList;
     }
 
     public List<Integer> getPatientDoctors(){
-        List<Integer> objects = new ArrayList<>();
+        List<Integer> doctorList = new ArrayList<>();
         for(BackReferenceEntity backReferenceEntity : getBackReferenceEntities()){
             if(this.id == backReferenceEntity.getReference_id().getId() && backReferenceEntity.getAttribute_id() == DOCTOR_PATIENT.id){
-                objects.add(backReferenceEntity.getObject_id());
+                doctorList.add(backReferenceEntity.getObject_id());
             }
         }
-        return objects;
+        return doctorList;
     }
 
     public List<Integer> getPatientPrescriptions(){
-        List<Integer> objects = new ArrayList<>();
+        List<Integer> patientPrescriptionList = new ArrayList<>();
         for(ReferenceEntity referenceEntity : getReferenceEntities()) {
             if (this.id == referenceEntity.getObject_id().getId() && referenceEntity.getAttribute_id() == PATIENT_PRESCRIPTION.id) {
-                objects.add(referenceEntity.getReference_id());
+                patientPrescriptionList.add(referenceEntity.getReference_id());
             }
         }
-        return objects;
+        return patientPrescriptionList;
     }
 
     public List<Integer> getDoctorPrescriptions(){
-        List<Integer> objects = new ArrayList<>();
+        List<Integer> doctorPrescriptionList = new ArrayList<>();
         for(ReferenceEntity referenceEntity : getReferenceEntities()) {
             if (this.id == referenceEntity.getObject_id().getId() && referenceEntity.getAttribute_id() == DOCTOR_PRESCRIPTION.id) {
-                objects.add(referenceEntity.getReference_id());
+                doctorPrescriptionList.add(referenceEntity.getReference_id());
             }
         }
-        return objects;
+        return doctorPrescriptionList;
     }
 }

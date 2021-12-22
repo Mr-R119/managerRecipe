@@ -1,8 +1,6 @@
 package com.controller;
 
-import com.model.daoEntity.EntityObject;
 import com.model.entity.AbstractEntity;
-import com.model.enums.TypeEntity;
 import com.service.CommonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
