@@ -60,8 +60,8 @@ public class DoctorEntity implements EntityFactory {
                     }
                 } else {
                     entityObject.setReferenceEntities(referenceEntities);
-                    entityObject.setBackReferenceEntities(backReferenceEntities);
                 }
+                entityObject.setBackReferenceEntities(backReferenceEntities);
                 return entityObject;
 
         }
